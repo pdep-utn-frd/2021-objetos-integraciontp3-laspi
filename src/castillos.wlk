@@ -70,7 +70,7 @@ class Castillo{
 		return sequitos.sum{s=>s.temor()} < 120
 	}
 	method prepararDefensas(){
-		sequitos.forEach{s=>s.realizarPlanEstratega()}
+		sequitos.forEach{s=>s.realizarPlanEstratega(self)} //agregar castillo como parametro
 	}
 	
 	method aumentarEstabilidad(e){
@@ -91,7 +91,7 @@ class Castillo{
 	method sumaDePerimetros(){
 		return ambientes.sum{c=>c.perimetro()}
 	}
-	method recibirAtaque(){//hay algo mal con esta cuenta y estabilidad
+	method recibirAtaque(){//hay algo mal con esta cuenta y estabilidad sugiero castillo como parametro
 		self.prepararDefensas()
 		estabilidad = estabilidad + (tamanioMuralla - self.cantidadDeAmbientes() - self.sumaDePerimetros() - self.resistencia())
 		sequitos.forEach{s=>s.efectoDeRecibirAtaque()}	
@@ -105,7 +105,6 @@ class Guardia{
 		var agotamiento
 		var ambienteDelCastillo
 		var temor
-		const castillo
 		
 		method aumentarTemor(t){
 			temor +=t
@@ -116,7 +115,7 @@ class Guardia{
 		}
 
 		
-		method realizarPlanEstratega(){
+		method realizarPlanEstratega(castillo){ //agrego parametro castillo borro atributo
 			castillo.aumentarResistencia(40)    //no está tan bueno eso ver después
 		}
 		
@@ -139,7 +138,6 @@ class Burocrata{
 	const nombre
 	const fechaNacimiento
 	var aniosExperiencia
-	const castillo
 	var temor
 	var capacidad = 0
 	var panico
@@ -164,7 +162,7 @@ class Burocrata{
 	method efectoPorLaFiesta(){
 		panico = 0}
 
-	method realizarPlanEstratega(){
+	method realizarPlanEstratega(castillo){
 		if(panico<100){
 			 castillo.aumentarResistencia(40) 
 		}
