@@ -70,7 +70,7 @@ class Castillo{
 		return sequitos.sum{s=>s.temor()} < 120
 	}
 	method prepararDefensas(){
-		return sequitos.forEach{s=>s.realizarPlanEstratega()}
+		sequitos.forEach{s=>s.realizarPlanEstratega()}
 	}
 	
 	method aumentarEstabilidad(e){
@@ -93,7 +93,7 @@ class Castillo{
 	}
 	method recibirAtaque(){//hay algo mal con esta cuenta y estabilidad
 		self.prepararDefensas()
-		estabilidad = estabilidad - (tamanioMuralla - self.cantidadDeAmbientes() - self.sumaDePerimetros() - self.resistencia())
+		estabilidad = estabilidad + (tamanioMuralla - self.cantidadDeAmbientes() - self.sumaDePerimetros() - self.resistencia())
 		sequitos.forEach{s=>s.efectoDeRecibirAtaque()}	
 	}
 	
@@ -117,7 +117,7 @@ class Guardia{
 
 		
 		method realizarPlanEstratega(){
-			castillo.aumentarResistencia(40)
+			castillo.aumentarResistencia(40)    //no está tan bueno eso ver después
 		}
 		
 		method agotamiento()=agotamiento
@@ -166,7 +166,7 @@ class Burocrata{
 
 	method realizarPlanEstratega(){
 		if(panico<100){
-			 castillo.aumentarResistencia(40)
+			 castillo.aumentarResistencia(40) 
 		}
 		
 	}
